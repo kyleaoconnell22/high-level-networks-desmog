@@ -25,6 +25,6 @@ Finally, make sure before you 'source' the functions R script, you open that fil
 ### Anchored Hybrid Enrichment Data
 + The AHE pipeline starts with `1_Sample_trees_AHE.R` which contains the routine for subsampling gene tree from the AHE data set using the functions in the file 'DeepQuartets_functions.R'. Specifically, we select one individual at random for each species. Then we keep a copy of each gene tree that displays these individuals and removed all other individuals. This left a set of gene trees with 7 taxa each. This is repeated 10,000 times.
 + `Obtain_DisplayedTrees_AHE.R`: This file contains the steps to obtain the backbone tree for the AHE dataset. This whole method was outlined in the section above. 
-+ `UseDeepHybrid_SNF_Dsuite.R`: This file contains the integration of the information of sNMF and Dsuite and the Deep quartet network information. Here we are just visualizing the integration of admixture signals across our network and other analyses from our study. 
-+ 
-	 
++ `UseDeepHybrid_SNF_Dsuite.R`: This file contains the integration of the information of sNMF and Dsuite and the Deep quartet network information. Here we are just visualizing the integration of admixture signals across our network and other analyses from our study to create a final higher-level network.
+
+
