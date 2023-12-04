@@ -3,9 +3,9 @@
 Code from the paper “Resolving higher-level phylogenetic networks with repeated hybridization in a complex of polytypic salamanders (Plethodontidae: Desmognathus)”
 
 ### Overview
-Code in this repo is from the paper “Resolving higher-level phylogenetic networks with repeated hybridization in a complex of polytypic salamanders (Plethodontidae: Desmognathus)”.
+The code in this repo is from the paper “Resolving higher-level phylogenetic networks with repeated hybridization in a complex of polytypic salamanders (Plethodontidae: Desmognathus)”.
 
-We include two examples pipelines, one one simulated data that demonstrates a proof of concept, and the other used on our empirical data. We take each in turn below. 
+We include two example pipelines, one one simulated data that demonstrates a proof of concept, and the other used on our empirical data. We take each in turn below. 
 
 ### Simulated Data
 The directory called `SimulatedData_analysis` has a single R script called `Obtain_DisplayedTrees_Example.R` which has the steps to obtain the displayed trees for the data simulated via Hybrid-Lambda on the network:
@@ -18,7 +18,7 @@ We divide our method into several steps. Steps 1 and 2 generate a quartet table 
 - Missing_quartets_on_trees: This function performs Step (5) of our method. 
 - Tallying_quartets_on_trees: This function performs Step (6) of our method. 
 
-This method assumes you have 7 taxa, and as such comes with an R data file of all possible 7-taxa trees `7taxaTrees.RData`. This file is needed to be bale to compare all 7-taxon topologies exhaustively. We also incluide simulated gene trees on 7 taxa `Example_network_sample`.
+This method assumes you have 7 taxa, and as such comes with an R data file of all possible 7-taxa trees `7taxaTrees.RData`. This file is needed to be bale to compare all 7-taxon topologies exhaustively. We also include simulated gene trees on 7 taxa `Example_network_sample`.
 
 Finally, make sure before you 'source' the functions R script, you open that file in a text editor and update the wd path.
 
