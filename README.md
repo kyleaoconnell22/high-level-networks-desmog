@@ -6,7 +6,7 @@ Code from the paper “Resolving higher-level phylogenetic networks with repeate
 The code in this repo is from the paper “Resolving higher-level phylogenetic networks with repeated hybridization in a complex of polytypic salamanders (Plethodontidae: Desmognathus)”. We briefly give an overview of the steps of the method and their implementation. All the functions mentioned in these steps can be found in the file DeepQuartets_functions.R unless it is stated otherwise.
 
 ##### Step 1
-The first step is determining the empirical quartet counts (empirical concordance factors) from the gene trees for every subset of 4 taxa. This step was previously implemented in the R package 'MSCquartets' in the function NANUQ() by Allman et al. (2020) (whose input and output are discussed in the next step). We used such an implementation to obtain all empirical quartet counts. 
+The first step is determining the empirical quartet counts (empirical concordance factors) from the gene trees for every subset of 4 taxa. This step was previously implemented in the R package 'MSCquartets' in the function NANUQ() by Rhodes et al. (2021) (whose input and output are discussed in the next step). We used such an implementation to obtain all empirical quartet counts. 
 
 ##### Step 2
 The second step is to apply a statistical hypothesis test to the empirical concordance factors (obtained from Step 1) as done by Mitchell et al. (2019) to determine which quartet networks are B-quartet networks and which are T-quartet networks.
