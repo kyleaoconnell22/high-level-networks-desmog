@@ -7,6 +7,18 @@ The code in this repo is from the paper “Resolving higher-level phylogenetic n
 
 We include two example pipelines, one one simulated data that demonstrates a proof of concept, and the other used on our empirical data. We take each in turn below. 
 
+#### Step 1
+
+#### Step 2
+
+#### Step 3
+
+#### Step 4
+
+#### Step 5
+
+#### Step 6
+
 ### Simulated Data
 The directory called `SimulatedData_analysis` has a single R script called `Obtain_DisplayedTrees_Example.R` which has the steps to obtain the displayed trees for the data simulated via Hybrid-Lambda on the network:
 ```
