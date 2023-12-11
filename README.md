@@ -5,29 +5,29 @@ Code from the paper “Resolving higher-level phylogenetic networks with repeate
 ### Overview
 The code in this repo is from the paper “Resolving higher-level phylogenetic networks with repeated hybridization in a complex of polytypic salamanders (Plethodontidae: Desmognathus)”.
 
-#### Step 1
+##### Step 1
 The first step is determining the empirical quartet counts (empirical concordance factors) from the gene trees for every subset of 4 taxa.    
 This has already been implemented in the R package 'MSCquartets' in the function NANUQ() (whose input and output are discussed in the next step). We used such implementation to obtain all empirical quartet counts 
 
-#### Step 2
+##### Step 2
 The second step is to apply a statistical hypothesis test to the empirical concordance factors (obtained from Step 1) as done by Mitchell et al. (2019) to determine which quartet networks are B-quartet networks and which are T-quartet networks.
 The null hypothesis is that the quartet is a T-quartet, thus if we reject the null hypothesis we consider the quartet as a B-quartet. This has also been implemented in the R package 'MSCquartets' in the function NANUQ(). The input of such function input is a collection of gene trees and the output is a table with the empirical concordance factors with the respective p-values. We used such implementation to determine which quartets are B-quartets and which are T-quartets.
 
-#### Step 3
+##### Step 3
 The third step is to associate one quartet tree with each quartet identified as a T-quartet and associate two quartet trees with each quartet identified as a B-quartet. As explained in the manuscript, we expect that the collection of all quartet trees associated with B-quartets and T-quartets will be displayed in the network. We refer to this collection as the set of dominant quartet trees. As detailed in the SI, for each T-quartet the dominant quartet tree is the most frequent one and for each B-quartet the dominant quartets are the two most frequent quartet trees. 
 
 For this step, we wrote the R function Quartet_Analysis() in the file DeepQuartets_functions.R. The input for this function is the table outputted by NANUQ() and a significance level to determine whether we accept or reject the null hypothesis (as explained in the previous step). The output is a list with the dominant quartets obtained from T-quartets (1 form each), and a list with the dominant quartets obtained from all B-quartets (two from each). 
 
-#### Step 4
+##### Step 4
 The fourth step consists of constructing a set T^0 consisting of all trees that display only dominant quartet trees (those quartet trees in step 3). Any tree in T0 could potentially be displayed in the network since, for any subset of 4 taxa, each of these trees will display a dominant quartet tree on those 4 taxa. For now, this step is done exhaustively by looking at all possible trees displaying only dominant quartets. This is possible since for our data set and simulated data sets, we only consider 7 taxa. To obtain such a set of trees we implemented a function called Trees_quartet_display() whose input is the list of dominant quartets as output by the function Quartet_Analysis() explained in the previous step, and a vector with the name of the taxa of the seven taxa in the data. This function finds all trees on 7 taxa whose quartet trees are all a subset of the set of dominant quartets. 
 
-#### Step 5
+##### Step 5
 The fifth step consists of, for each tree T in T^0, constructing a set Q(T) consisting of the set of quartet trees associated with all B-quartets not displayed in T. Note that for any candidate tree T in T^0, Q(T) contains all the dominant quartet trees that are not displayed in T. If one would assume that T is a displayed tree in the network, then there should be other displayed trees in the network that display the remaining dominant quartet trees, i.e. those in Q(T). Loosely speaking, Q(T) is the information in the network not accounted for by T.  For this step we implemented the function Missing_quartets_on_trees(). The input is the set of trees as produced by the function Trees_quartet_display() explained in the previous step. This function compares each tree with the set of dominant trees and for each tree T, it outputs a list of the dominant quartets not displayed in T (which is referred to in the paper as Q(T)).
 
-#### Step 6
+##### Step 6
 For each tree T in T^0, find the set of trees S(T) contained in T^0 that display the maximum number of quartet trees in Q(T). The output of the method consists of those trees in T^0 such that the trees in S(T) displayed the greatest number of quartets for all T in T^0, and their associated trees are the set S(T). We refer to S(T) as the complement of T. In particular, note that for any candidate tree T in T^0, the set S(T) contains the trees that display most of the dominant quartet trees not displayed by T. One can think of S(T) as the set of candidate trees that display most of the information missing in T. The output consists of those trees T whose complement describes most of the missing data in T, together with S(T). For this step, we implemented the function Tallying_quartets_on_trees() whose input is the set of trees T^0 as output by Trees_quartet_display(), the list of quartets not displayed by a tree (Q(T)), as output by the function Missing_quartets_on_trees() and the set of taxon names. The output consists of a collection of trees displayed in the network.
 
-#### Data
+##### Data
 We include two example pipelines, one one simulated data that demonstrates a proof of concept, and the other used on our empirical data. We take each in turn below. 
 
 ### Simulated Data
