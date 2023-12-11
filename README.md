@@ -3,11 +3,10 @@
 Code from the paper “Resolving higher-level phylogenetic networks with repeated hybridization in a complex of polytypic salamanders (Plethodontidae: Desmognathus)”
 
 ### Overview
-The code in this repo is from the paper “Resolving higher-level phylogenetic networks with repeated hybridization in a complex of polytypic salamanders (Plethodontidae: Desmognathus)”.
+The code in this repo is from the paper “Resolving higher-level phylogenetic networks with repeated hybridization in a complex of polytypic salamanders (Plethodontidae: Desmognathus)”. We briefly give an overview of the steps of the method and their implementation. All the functions mentioned in these steps can be found in the file DeepQuartets_functions.R unless it is stated otherwise.
 
 ##### Step 1
-The first step is determining the empirical quartet counts (empirical concordance factors) from the gene trees for every subset of 4 taxa.    
-This has already been implemented in the R package 'MSCquartets' in the function NANUQ() (whose input and output are discussed in the next step). We used such implementation to obtain all empirical quartet counts 
+The first step is determining the empirical quartet counts (empirical concordance factors) from the gene trees for every subset of 4 taxa. This step was previously implemented in the R package 'MSCquartets' in the function NANUQ() by Allman et al. (2020) (whose input and output are discussed in the next step). We used such an implementation to obtain all empirical quartet counts. 
 
 ##### Step 2
 The second step is to apply a statistical hypothesis test to the empirical concordance factors (obtained from Step 1) as done by Mitchell et al. (2019) to determine which quartet networks are B-quartet networks and which are T-quartet networks.
@@ -16,7 +15,7 @@ The null hypothesis is that the quartet is a T-quartet, thus if we reject the nu
 ##### Step 3
 The third step is to associate one quartet tree with each quartet identified as a T-quartet and associate two quartet trees with each quartet identified as a B-quartet. As explained in the manuscript, we expect that the collection of all quartet trees associated with B-quartets and T-quartets will be displayed in the network. We refer to this collection as the set of dominant quartet trees. As detailed in the SI, for each T-quartet the dominant quartet tree is the most frequent one and for each B-quartet the dominant quartets are the two most frequent quartet trees. 
 
-For this step, we wrote the R function Quartet_Analysis() in the file DeepQuartets_functions.R. The input for this function is the table outputted by NANUQ() and a significance level to determine whether we accept or reject the null hypothesis (as explained in the previous step). The output is a list with the dominant quartets obtained from T-quartets (1 form each), and a list with the dominant quartets obtained from all B-quartets (two from each). 
+For this step, we wrote the R function Quartet_Analysis(). The input for this function is the table outputted by NANUQ() and a significance level to determine whether we accept or reject the null hypothesis (as explained in the previous step). The output is a list with the dominant quartets obtained from T-quartets (1 form each), and a list with the dominant quartets obtained from all B-quartets (two from each). 
 
 ##### Step 4
 The fourth step consists of constructing a set T^0 consisting of all trees that display only dominant quartet trees (those quartet trees in step 3). Any tree in T0 could potentially be displayed in the network since, for any subset of 4 taxa, each of these trees will display a dominant quartet tree on those 4 taxa. For now, this step is done exhaustively by looking at all possible trees displaying only dominant quartets. This is possible since for our data set and simulated data sets, we only consider 7 taxa. To obtain such a set of trees we implemented a function called Trees_quartet_display() whose input is the list of dominant quartets as output by the function Quartet_Analysis() explained in the previous step, and a vector with the name of the taxa of the seven taxa in the data. This function finds all trees on 7 taxa whose quartet trees are all a subset of the set of dominant quartets. 
